@@ -17,7 +17,7 @@ export var ToggleDarkMode = function (_a) {
         prefersDarkMode = null;
     }
     var getCurrentMode = useCallback(function () {
-        var modeSaved = storageKeyId ? localStorage.getItem(storageKeyId) : null;
+        var modeSaved = (typeof window !== "undefined" && storageKeyId) ? window.localStorage.getItem(storageKeyId) : null;
         if (modeSaved) {
             return modeSaved;
         }
@@ -45,12 +45,12 @@ export var ToggleDarkMode = function (_a) {
     var handleToggle = function () {
         var _isDarkMode = !isDarkMode;
         setIsDarkMode(_isDarkMode);
-        if (storageKeyId) {
+        if (typeof window !== "undefined" && storageKeyId) {
             if (_isDarkMode) {
-                localStorage.setItem(storageKeyId, ModeValue.dark);
+                window.localStorage.setItem(storageKeyId, ModeValue.dark);
             }
             else {
-                localStorage.setItem(storageKeyId, ModeValue.light);
+                window.localStorage.setItem(storageKeyId, ModeValue.light);
             }
         }
         if (onToggleEnd) {

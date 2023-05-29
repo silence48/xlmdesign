@@ -26,7 +26,7 @@ export const ToggleDarkMode = ({
   }
 
   const getCurrentMode = useCallback(() => {
-    const modeSaved = storageKeyId ? localStorage.getItem(storageKeyId) : null;
+    const modeSaved = (typeof window !== "undefined" && storageKeyId) ? window.localStorage.getItem(storageKeyId) : null;
 
     if (modeSaved) {
       return modeSaved;
@@ -63,11 +63,11 @@ export const ToggleDarkMode = ({
 
     setIsDarkMode(_isDarkMode);
 
-    if (storageKeyId) {
+    if (typeof window !== "undefined" && storageKeyId) {
       if (_isDarkMode) {
-        localStorage.setItem(storageKeyId, ModeValue.dark);
+        window.localStorage.setItem(storageKeyId, ModeValue.dark);
       } else {
-        localStorage.setItem(storageKeyId, ModeValue.light);
+        window.localStorage.setItem(storageKeyId, ModeValue.light);
       }
     }
 
