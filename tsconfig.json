@@ -1,0 +1,21 @@
+{
+  "extends": "@stellar/tsconfig",
+  "compilerOptions": {
+    "lib": ["es2015", "dom", "dom.iterable"],
+    "module": "esnext",
+  
+    "resolveJsonModule": true,
+    "target": "es5",
+    "sourceRoot": "./src",
+    "baseUrl": "./src",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "declarationDir": "build",
+    "moduleResolution": "node",
+    "outDir": "build",
+    "jsx": "react-jsx"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "build", "src/entry.ts"]
+}

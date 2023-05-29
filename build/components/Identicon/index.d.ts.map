@@ -1,0 +1,1 @@
+{"version":3,"file":"index.d.ts","sourceRoot":"./src/","sources":["components/Identicon/index.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,MAAM,OAAO,CAAC;AAE1B,OAAO,eAAe,CAAC;AAEvB,UAAU,cAAc;IACtB,aAAa,EAAE,MAAM,CAAC;IACtB,IAAI,CAAC,EAAE,MAAM,CAAC;IACd,cAAc,CAAC,EAAE,OAAO,CAAC;IACzB,gBAAgB,CAAC,EAAE,MAAM,CAAC;CAC3B;AAED,eAAO,MAAM,SAAS,EAAE,KAAK,CAAC,EAAE,CAAC,cAAc,CAsC9C,CAAC"}

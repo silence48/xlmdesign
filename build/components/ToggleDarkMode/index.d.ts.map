@@ -1,0 +1,1 @@
+{"version":3,"file":"index.d.ts","sourceRoot":"./src/","sources":["components/ToggleDarkMode/index.tsx"],"names":[],"mappings":";AAIA,oBAAY,SAAS;IACnB,KAAK,eAAe;IACpB,IAAI,cAAc;CACnB;AAED,UAAU,mBAAmB;IAC3B,YAAY,CAAC,EAAE,MAAM,CAAC;IACtB,UAAU,CAAC,EAAE,OAAO,CAAC;IACrB,WAAW,CAAC,EAAE,CAAC,UAAU,EAAE,OAAO,KAAK,IAAI,CAAC;CAC7C;AAED,eAAO,MAAM,cAAc;iDAIxB,mBAAmB;;CA+DrB,CAAC"}
