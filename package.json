@@ -1,11 +1,11 @@
 {
-  "name": "@stellar/design-system",
-  "version": "0.8.1",
+  "name": "xlm-design-system",
+  "version": "0.0.1",
   "author": "Stellar Development Foundation <hello@stellar.org>",
-  "description": "Components for Stellar Development Foundation’s design system",
+  "description": "Components for Stellar Development Foundations design system",
   "license": "Apache-2.0",
   "repository": {
-    "url": "git@github.com:stellar/stellar-design-system.git",
+    "url": "git@github.com:silence48/xlmdesign.git",
     "type": "git"
   },
   "main": "build/final.min.js",
