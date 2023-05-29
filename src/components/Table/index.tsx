@@ -141,6 +141,7 @@ export const Table = <T extends Record<string, any>>({
               </tr>
             </thead>
             <tbody>
+              
               {localData[currentPage - 1].map(
                 (item, index) => (
                   /* eslint-disable react/no-array-index-key */

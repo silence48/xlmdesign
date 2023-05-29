@@ -18,7 +18,12 @@ export const ToggleDarkMode = ({
   showBorder,
   onToggleEnd,
 }: ToggleDarkModeProps) => {
-  const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
+  let prefersDarkMode: MediaQueryList | null;
+  if (typeof window !== "undefined") {
+    prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
+  } else { 
+    prefersDarkMode = null;
+  }
 
   const getCurrentMode = useCallback(() => {
     const modeSaved = storageKeyId ? localStorage.getItem(storageKeyId) : null;
@@ -27,8 +32,8 @@ export const ToggleDarkMode = ({
       return modeSaved;
     }
 
-    return prefersDarkMode.matches ? ModeValue.dark : ModeValue.light;
-  }, [storageKeyId, prefersDarkMode.matches]);
+    return prefersDarkMode && prefersDarkMode.matches ? ModeValue.dark : ModeValue.light;
+  }, [storageKeyId, prefersDarkMode]);
 
   const [isDarkMode, setIsDarkMode] = useState(
     Boolean(getCurrentMode() === ModeValue.dark),
@@ -44,13 +49,13 @@ export const ToggleDarkMode = ({
 
   // Set body class when value changes
   useEffect(() => {
-    if (isDarkMode) {
+    if (typeof document !== "undefined") {if (isDarkMode) {
       document.body.classList.remove(ModeValue.light);
       document.body.classList.add(ModeValue.dark);
     } else {
       document.body.classList.remove(ModeValue.dark);
       document.body.classList.add(ModeValue.light);
-    }
+    }}
   }, [isDarkMode]);
 
   const handleToggle = () => {

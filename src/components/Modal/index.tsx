@@ -57,8 +57,10 @@ export const Modal: React.FC<ModalProps> & ModalComponent = ({
   offsetTop,
   children,
 }: ModalProps) => {
-  const parent = document.getElementById(parentId);
-
+  let parent: HTMLElement | null = null;
+  if (typeof document !== "undefined") {
+    parent = document.getElementById(parentId);
+  }
   const customStyle = {
     ...(offsetTop ? { "--Modal-offset-top": offsetTop } : {}),
   } as React.CSSProperties;
@@ -74,17 +76,17 @@ export const Modal: React.FC<ModalProps> & ModalComponent = ({
 
   useEffect(() => {
     if (disableWindowScrollWhenOpened && visible) {
-      document.body.classList.add(MODAL_OPEN_CLASS_NAME);
+      if (typeof document !== "undefined") {document.body.classList.add(MODAL_OPEN_CLASS_NAME)};
     } else {
-      document.body.classList.remove(MODAL_OPEN_CLASS_NAME);
+      if (typeof document !== "undefined") { document.body.classList.remove(MODAL_OPEN_CLASS_NAME)};
     }
   }, [disableWindowScrollWhenOpened, visible]);
 
   useEffect(() => {
     if (visible) {
-      document.addEventListener("keyup", closeOnEscape);
+      if (typeof document !== "undefined") {  document.addEventListener("keyup", closeOnEscape)};
     } else {
-      document.removeEventListener("keyup", closeOnEscape);
+      if (typeof document !== "undefined") { document.removeEventListener("keyup", closeOnEscape)};
     }
   }, [visible, closeOnEscape]);
 

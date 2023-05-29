@@ -9,14 +9,20 @@ export var ModeValue;
 })(ModeValue || (ModeValue = {}));
 export var ToggleDarkMode = function (_a) {
     var storageKeyId = _a.storageKeyId, showBorder = _a.showBorder, onToggleEnd = _a.onToggleEnd;
-    var prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
+    var prefersDarkMode;
+    if (typeof window !== "undefined") {
+        prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
+    }
+    else {
+        prefersDarkMode = null;
+    }
     var getCurrentMode = useCallback(function () {
         var modeSaved = storageKeyId ? localStorage.getItem(storageKeyId) : null;
         if (modeSaved) {
             return modeSaved;
         }
-        return prefersDarkMode.matches ? ModeValue.dark : ModeValue.light;
-    }, [storageKeyId, prefersDarkMode.matches]);
+        return prefersDarkMode && prefersDarkMode.matches ? ModeValue.dark : ModeValue.light;
+    }, [storageKeyId, prefersDarkMode]);
     var _b = useState(Boolean(getCurrentMode() === ModeValue.dark)), isDarkMode = _b[0], setIsDarkMode = _b[1];
     useEffect(function () {
         var currentMode = getCurrentMode();
@@ -24,13 +30,15 @@ export var ToggleDarkMode = function (_a) {
         setIsDarkMode(_isDarkMode);
     }, [getCurrentMode]);
     useEffect(function () {
-        if (isDarkMode) {
-            document.body.classList.remove(ModeValue.light);
-            document.body.classList.add(ModeValue.dark);
-        }
-        else {
-            document.body.classList.remove(ModeValue.dark);
-            document.body.classList.add(ModeValue.light);
+        if (typeof document !== "undefined") {
+            if (isDarkMode) {
+                document.body.classList.remove(ModeValue.light);
+                document.body.classList.add(ModeValue.dark);
+            }
+            else {
+                document.body.classList.remove(ModeValue.dark);
+                document.body.classList.add(ModeValue.light);
+            }
         }
     }, [isDarkMode]);
     var handleToggle = function () {

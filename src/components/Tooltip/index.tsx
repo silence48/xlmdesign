@@ -1,4 +1,4 @@
-import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
+import React, { useCallback, useLayoutEffect, useEffect, useRef, useState } from "react";
 import { createPopper, preventOverflow, flip } from "@popperjs/core";
 import { Icon } from "../../icons";
 import "./styles.scss";
@@ -85,7 +85,7 @@ export const Tooltip: React.FC<TooltipProps> & TooltipComponent = ({
     }
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!disableClick) {
       if (isTooltipVisible) {
         document.addEventListener("mousedown", handleClickOutside);

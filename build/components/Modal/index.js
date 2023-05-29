@@ -21,7 +21,10 @@ var ModalFooter = function (_a) {
 };
 export var Modal = function (_a) {
     var _b = _a.parentId, parentId = _b === void 0 ? "root" : _b, visible = _a.visible, onClose = _a.onClose, _c = _a.disableWindowScrollWhenOpened, disableWindowScrollWhenOpened = _c === void 0 ? true : _c, offsetTop = _a.offsetTop, children = _a.children;
-    var parent = document.getElementById(parentId);
+    var parent = null;
+    if (typeof document !== "undefined") {
+        parent = document.getElementById(parentId);
+    }
     var customStyle = __assign({}, (offsetTop ? { "--Modal-offset-top": offsetTop } : {}));
     var closeOnEscape = useCallback(function (event) {
         if (event.key === "Escape") {
@@ -30,18 +33,30 @@ export var Modal = function (_a) {
     }, [onClose]);
     useEffect(function () {
         if (disableWindowScrollWhenOpened && visible) {
-            document.body.classList.add(MODAL_OPEN_CLASS_NAME);
+            if (typeof document !== "undefined") {
+                document.body.classList.add(MODAL_OPEN_CLASS_NAME);
+            }
+            ;
         }
         else {
-            document.body.classList.remove(MODAL_OPEN_CLASS_NAME);
+            if (typeof document !== "undefined") {
+                document.body.classList.remove(MODAL_OPEN_CLASS_NAME);
+            }
+            ;
         }
     }, [disableWindowScrollWhenOpened, visible]);
     useEffect(function () {
         if (visible) {
-            document.addEventListener("keyup", closeOnEscape);
+            if (typeof document !== "undefined") {
+                document.addEventListener("keyup", closeOnEscape);
+            }
+            ;
         }
         else {
-            document.removeEventListener("keyup", closeOnEscape);
+            if (typeof document !== "undefined") {
+                document.removeEventListener("keyup", closeOnEscape);
+            }
+            ;
         }
     }, [visible, closeOnEscape]);
     if (!parent || !visible) {

@@ -1,6 +1,6 @@
 import { __assign } from "tslib";
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-import { useCallback, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useLayoutEffect, useEffect, useRef, useState } from "react";
 import { createPopper, preventOverflow, flip } from "@popperjs/core";
 import { Icon } from "../../icons";
 import "./styles.scss";
@@ -59,7 +59,7 @@ export var Tooltip = function (_a) {
             setIsTooltipVisible(false);
         }
     }, []);
-    useLayoutEffect(function () {
+    useEffect(function () {
         if (!disableClick) {
             if (isTooltipVisible) {
                 document.addEventListener("mousedown", handleClickOutside);

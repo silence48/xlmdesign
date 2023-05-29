@@ -4,6 +4,7 @@ const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
+  mode: "development",
   entry: {
     "final.min": path.resolve(__dirname, "./src/entry.ts"),
   },
@@ -97,6 +98,7 @@ module.exports = {
     }),
   ],
   optimization: {
+    minimize: false,
     splitChunks: {
       cacheGroups: {
         styles: {
