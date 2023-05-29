@@ -29,16 +29,19 @@ export var ToggleDarkMode = function (_a) {
         var _isDarkMode = Boolean(currentMode === ModeValue.dark);
         setIsDarkMode(_isDarkMode);
     }, [getCurrentMode]);
-    useEffect(function () {
-        if (isDarkMode) {
-            document.body.classList.remove(ModeValue.light);
-            document.body.classList.add(ModeValue.dark);
-        }
-        else {
-            document.body.classList.remove(ModeValue.dark);
-            document.body.classList.add(ModeValue.light);
-        }
-    }, [isDarkMode]);
+    if (typeof window !== 'undefined') {
+        useEffect(function () {
+            if (isDarkMode) {
+                document.body.classList.remove(ModeValue.light);
+                document.body.classList.add(ModeValue.dark);
+            }
+            else {
+                document.body.classList.remove(ModeValue.dark);
+                document.body.classList.add(ModeValue.light);
+            }
+        }, [isDarkMode]);
+    }
+    ;
     var handleToggle = function () {
         var _isDarkMode = !isDarkMode;
         setIsDarkMode(_isDarkMode);

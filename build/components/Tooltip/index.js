@@ -59,19 +59,22 @@ export var Tooltip = function (_a) {
             setIsTooltipVisible(false);
         }
     }, []);
-    useEffect(function () {
-        if (!disableClick) {
-            if (isTooltipVisible) {
-                document.addEventListener("mousedown", handleClickOutside);
+    if (typeof window !== 'undefined') {
+        useEffect(function () {
+            if (!disableClick) {
+                if (isTooltipVisible) {
+                    document.addEventListener("mousedown", handleClickOutside);
+                }
+                else {
+                    document.removeEventListener("mousedown", handleClickOutside);
+                }
             }
-            else {
+            return function () {
                 document.removeEventListener("mousedown", handleClickOutside);
-            }
-        }
-        return function () {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, [isTooltipVisible, handleClickOutside, disableClick]);
+            };
+        }, [isTooltipVisible, handleClickOutside, disableClick]);
+    }
+    ;
     return (_jsxs("div", __assign({ className: "Tooltip ".concat(isTooltipVisible ? "Tooltip--opened" : "") }, { children: [_jsx("div", __assign({ ref: referenceEl, className: "Tooltip__component", onClick: function () { return !disableClick && setIsTooltipVisible(!isTooltipVisible); } }, { children: children })), _jsxs("div", __assign({ ref: tooltipEl, className: "Tooltip__content", style: { visibility: isTooltipVisible ? "visible" : "hidden" } }, { children: [_jsx("div", __assign({ className: "Tooltip__content__container" }, { children: content })), _jsx("div", __assign({ "data-popper-arrow": true, className: "Tooltip__content__arrow" }, { children: _jsx(Icon.TooltipPoint, {}) }))] }))] })));
 };
 Tooltip.displayName = "Tooltip";

@@ -22,31 +22,40 @@ var ModalFooter = function (_a) {
 export var Modal = function (_a) {
     var _b = _a.parentId, parentId = _b === void 0 ? "root" : _b, visible = _a.visible, onClose = _a.onClose, _c = _a.disableWindowScrollWhenOpened, disableWindowScrollWhenOpened = _c === void 0 ? true : _c, offsetTop = _a.offsetTop, children = _a.children;
     var parent = null;
-    useEffect(function () {
-        parent = document.getElementById(parentId);
-    }, [parentId]);
+    if (typeof window !== 'undefined') {
+        useEffect(function () {
+            parent = document.getElementById(parentId);
+        }, [parentId]);
+    }
+    ;
     var customStyle = __assign({}, (offsetTop ? { "--Modal-offset-top": offsetTop } : {}));
     var closeOnEscape = useCallback(function (event) {
         if (event.key === "Escape") {
             onClose();
         }
     }, [onClose]);
-    useEffect(function () {
-        if (disableWindowScrollWhenOpened && visible) {
-            document.body.classList.add(MODAL_OPEN_CLASS_NAME);
-        }
-        else {
-            document.body.classList.remove(MODAL_OPEN_CLASS_NAME);
-        }
-    }, [disableWindowScrollWhenOpened, visible]);
-    useEffect(function () {
-        if (visible) {
-            document.addEventListener("keyup", closeOnEscape);
-        }
-        else {
-            document.removeEventListener("keyup", closeOnEscape);
-        }
-    }, [visible, closeOnEscape]);
+    if (typeof window !== 'undefined') {
+        useEffect(function () {
+            if (disableWindowScrollWhenOpened && visible) {
+                document.body.classList.add(MODAL_OPEN_CLASS_NAME);
+            }
+            else {
+                document.body.classList.remove(MODAL_OPEN_CLASS_NAME);
+            }
+        }, [disableWindowScrollWhenOpened, visible]);
+    }
+    ;
+    if (typeof window !== 'undefined') {
+        useEffect(function () {
+            if (visible) {
+                document.addEventListener("keyup", closeOnEscape);
+            }
+            else {
+                document.removeEventListener("keyup", closeOnEscape);
+            }
+        }, [visible, closeOnEscape]);
+    }
+    ;
     if (!parent || !visible) {
         return null;
     }

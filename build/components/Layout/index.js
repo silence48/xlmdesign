@@ -26,14 +26,17 @@ var stringToCamelcase = function (str) {
 };
 var Header = function (_a) {
     var projectTitle = _a.projectTitle, projectLink = _a.projectLink, hasDarkModeToggle = _a.hasDarkModeToggle, onDarkModeToggleEnd = _a.onDarkModeToggleEnd, onSignOut = _a.onSignOut, showButtonBorder = _a.showButtonBorder, menu = _a.menu, contentCenter = _a.contentCenter, contentRight = _a.contentRight;
-    useEffect(function () {
-        if (!hasDarkModeToggle) {
-            if (typeof document !== "undefined") {
-                document.body.classList.add(ModeValue.light);
+    if (typeof window !== 'undefined') {
+        useEffect(function () {
+            if (!hasDarkModeToggle) {
+                if (typeof document !== "undefined") {
+                    document.body.classList.add(ModeValue.light);
+                }
+                ;
             }
-            ;
-        }
-    }, [hasDarkModeToggle]);
+        }, [hasDarkModeToggle]);
+    }
+    ;
     return (_jsx("div", __assign({ className: "Layout__header" }, { children: _jsxs(Layout.Inset, { children: [_jsx("div", __assign({ className: "Layout__header--left" }, { children: _jsx(ProjectLogo, { title: projectTitle, link: projectLink }) })), contentCenter ? (_jsx("div", __assign({ className: "Layout__header--center" }, { children: contentCenter }))) : null, _jsxs("div", __assign({ className: "Layout__header--right" }, { children: [contentRight !== null && contentRight !== void 0 ? contentRight : null, onSignOut ? (_jsx(TextLink, __assign({ id: "sign-out-button", role: "button", onClick: onSignOut }, { children: "Sign out" }))) : null, hasDarkModeToggle ? (_jsx(ToggleDarkMode, { storageKeyId: "stellarTheme:".concat(stringToCamelcase(projectTitle)), showBorder: showButtonBorder, onToggleEnd: onDarkModeToggleEnd })) : null, (menu === null || menu === void 0 ? void 0 : menu.isEnabled) ? (_jsx(NavButton, { id: "open-side-nav-button", title: "Open side navigation", onClick: menu.onOpen, icon: _jsx(Icon.Menu, {}), showBorder: showButtonBorder })) : null] }))] }) })));
 };
 var Footer = function (_a) {
