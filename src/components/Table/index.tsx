@@ -1,5 +1,4 @@
 import React, { useCallback, useLayoutEffect, useState } from "react";
-import { useSearchParams } from "@remix-run/react";
 import { chunk } from "lodash";
 import { Loader } from "../Loader";
 import { Pagination } from "../Pagination";
@@ -19,7 +18,7 @@ interface TableProps<T> {
   data: T[];
   columnLabels: TableColumnLabel[];
   renderItemRow: (item: T) => React.ReactElement;
-  breakpoint: 300 | 400 | 500 | 600 | 700 | 800 | 900;
+  breakpoint: 300 | 400 | 500 | 600 | 700 | 800| 900;
   hideNumberColumn?: boolean;
   isLoading?: boolean;
   emptyMessage?: string;
@@ -37,9 +36,7 @@ export const Table = <T extends Record<string, any>>({
   emptyMessage = "No data to show",
   pageSize,
 }: TableProps<T>) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const pageParam = Number(searchParams.get("page")) || 1;
-
+  const pageParam = 1;
 
   const chunkData = useCallback(
     (items: T[]) => chunk(items, pageSize || items.length),
@@ -137,7 +134,7 @@ export const Table = <T extends Record<string, any>>({
                       {renderSortIcon(lb.id)}
                     </div>
                   </th>
-                ))}
+               ))}
               </tr>
             </thead>
             <tbody>
@@ -177,7 +174,6 @@ export const Table = <T extends Record<string, any>>({
         currentPage={currentPage}
         setCurrentPage={(page: number) => {
           setCurrentPage(page);
-          setSearchParams({ page: String(page) });
         }}
       />
 

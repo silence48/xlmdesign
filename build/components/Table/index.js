@@ -1,7 +1,6 @@
 import { __assign } from "tslib";
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useCallback, useLayoutEffect, useState } from "react";
-import { useSearchParams } from "@remix-run/react";
 import { chunk } from "lodash";
 import { Loader } from "../Loader";
 import { Pagination } from "../Pagination";
@@ -11,13 +10,12 @@ import { SortOrder } from "../../types/types";
 import "./styles.scss";
 export var Table = function (_a) {
     var _b = _a.id, id = _b === void 0 ? "table" : _b, data = _a.data, columnLabels = _a.columnLabels, renderItemRow = _a.renderItemRow, breakpoint = _a.breakpoint, hideNumberColumn = _a.hideNumberColumn, isLoading = _a.isLoading, _c = _a.emptyMessage, emptyMessage = _c === void 0 ? "No data to show" : _c, pageSize = _a.pageSize;
-    var _d = useSearchParams(), searchParams = _d[0], setSearchParams = _d[1];
-    var pageParam = Number(searchParams.get("page")) || 1;
+    var pageParam = 1;
     var chunkData = useCallback(function (items) { return chunk(items, pageSize || items.length); }, [pageSize]);
-    var _e = useState(chunkData(data)), localData = _e[0], setLocalData = _e[1];
-    var _f = useState(null), currentSortKey = _f[0], setCurrentSortKey = _f[1];
-    var _g = useState(null), sortOrder = _g[0], setSortOder = _g[1];
-    var _h = useState(pageParam), currentPage = _h[0], setCurrentPage = _h[1];
+    var _d = useState(chunkData(data)), localData = _d[0], setLocalData = _d[1];
+    var _e = useState(null), currentSortKey = _e[0], setCurrentSortKey = _e[1];
+    var _f = useState(null), sortOrder = _f[0], setSortOder = _f[1];
+    var _g = useState(pageParam), currentPage = _g[0], setCurrentPage = _g[1];
     var isSortableTable = Boolean(columnLabels.find(function (cl) { return cl.sortBy; }));
     useLayoutEffect(function () {
         setLocalData(chunkData(data));
@@ -57,7 +55,6 @@ export var Table = function (_a) {
                                         return item.href ? window.location.assign(item.href) : null;
                                     } }, { children: [hideNumberColumn ? null : (_jsx("td", { children: getItemNumber(pageSize || 0, currentPage - 1, index + 1) })), renderItemRow(item)] }), "".concat(id, "-row-").concat(index))); }) })] }))) : null] })), pageSize ? (_jsx(Pagination, { pageSize: pageSize, itemCount: data.length, currentPage: currentPage, setCurrentPage: function (page) {
                     setCurrentPage(page);
-                    setSearchParams({ page: String(page) });
                 } })) : null, isLoading ? _jsx(Loader, { size: "3rem" }) : null] })));
 };
 Table.displayName = "Table";
