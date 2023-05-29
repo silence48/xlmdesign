@@ -1,6 +1,6 @@
 {
   "name": "xlm-design-system",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Stellar Development Foundation <hello@stellar.org>",
   "description": "Components for Stellar Development Foundations design system forked to work with remix and cloudflare pages.",
   "license": "Apache-2.0",
@@ -11,7 +11,7 @@
   "main": "build/final.min.js",
   "types": "build/index.d.ts",
   "scripts": {
-    "build:prod": "yarn clean && webpack --mode production",
+    "build:prod": "yarn clean && webpack --mode development",
     "build:tsc": "tsc -p tsconfig.json",
     "build": "yarn build:prod && yarn build:tsc",
     "watch:tsc": "tsc -w -p tsconfig.json",

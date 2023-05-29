@@ -30,15 +30,13 @@ export var ToggleDarkMode = function (_a) {
         setIsDarkMode(_isDarkMode);
     }, [getCurrentMode]);
     useEffect(function () {
-        if (typeof document !== "undefined") {
-            if (isDarkMode) {
-                document.body.classList.remove(ModeValue.light);
-                document.body.classList.add(ModeValue.dark);
-            }
-            else {
-                document.body.classList.remove(ModeValue.dark);
-                document.body.classList.add(ModeValue.light);
-            }
+        if (isDarkMode) {
+            document.body.classList.remove(ModeValue.light);
+            document.body.classList.add(ModeValue.dark);
+        }
+        else {
+            document.body.classList.remove(ModeValue.dark);
+            document.body.classList.add(ModeValue.light);
         }
     }, [isDarkMode]);
     var handleToggle = function () {
