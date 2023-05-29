@@ -59,9 +59,9 @@ export const Modal: React.FC<ModalProps> & ModalComponent = ({
 }: ModalProps) => {
   let parent: HTMLElement | null = null;
 
-useEffect(() => {
+  if (typeof window !== 'undefined') {useEffect(() => {
   parent = document.getElementById(parentId);
-}, [parentId]);
+}, [parentId])};
 
   const customStyle = {
     ...(offsetTop ? { "--Modal-offset-top": offsetTop } : {}),
@@ -76,21 +76,21 @@ useEffect(() => {
     [onClose],
   );
 
-  useEffect(() => {
+  if (typeof window !== 'undefined') {useEffect(() => {
     if (disableWindowScrollWhenOpened && visible) {
       document.body.classList.add(MODAL_OPEN_CLASS_NAME);
     } else {
       document.body.classList.remove(MODAL_OPEN_CLASS_NAME);
     }
-  }, [disableWindowScrollWhenOpened, visible]);
+  }, [disableWindowScrollWhenOpened, visible])};
 
-  useEffect(() => {
+  if (typeof window !== 'undefined') {useEffect(() => {
     if (visible) {
       document.addEventListener("keyup", closeOnEscape);
     } else {
       document.removeEventListener("keyup", closeOnEscape);
     }
-  }, [visible, closeOnEscape]);
+  }, [visible, closeOnEscape])};
 
   if (!parent || !visible) {
     return null;

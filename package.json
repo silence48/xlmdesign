@@ -1,6 +1,6 @@
 {
   "name": "xlm-design-system",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Stellar Development Foundation <hello@stellar.org>",
   "description": "Components for Stellar Development Foundations design system forked to work with remix and cloudflare pages.",
   "license": "Apache-2.0",

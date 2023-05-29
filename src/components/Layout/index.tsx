@@ -67,11 +67,11 @@ const Header: React.FC<HeaderProps> = ({
   contentRight,
 }: HeaderProps) => {
   // Set default mode to light, if there is no theme toggle
-  useEffect(() => {
+  if (typeof window !== 'undefined') {useEffect(() => {
     if (!hasDarkModeToggle) {
       if (typeof document !== "undefined") {document.body.classList.add(ModeValue.light)};
     }
-  }, [hasDarkModeToggle]);
+  }, [hasDarkModeToggle])};
 
   return (
     <div className="Layout__header">

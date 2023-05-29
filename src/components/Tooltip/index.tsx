@@ -85,7 +85,7 @@ export const Tooltip: React.FC<TooltipProps> & TooltipComponent = ({
     }
   }, []);
 
-  useEffect(() => {
+  if (typeof window !== 'undefined') {useEffect(() => {
     if (!disableClick) {
       if (isTooltipVisible) {
         document.addEventListener("mousedown", handleClickOutside);
@@ -97,7 +97,7 @@ export const Tooltip: React.FC<TooltipProps> & TooltipComponent = ({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isTooltipVisible, handleClickOutside, disableClick]);
+  }, [isTooltipVisible, handleClickOutside, disableClick])};
 
   return (
     <div className={`Tooltip ${isTooltipVisible ? "Tooltip--opened" : ""}`}>

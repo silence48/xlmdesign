@@ -48,7 +48,7 @@ export const ToggleDarkMode = ({
   }, [getCurrentMode]);
 
   // Set body class when value changes
-  useEffect(() => {
+  if (typeof window !== 'undefined') {useEffect(() => {
     if (isDarkMode) {
       document.body.classList.remove(ModeValue.light);
       document.body.classList.add(ModeValue.dark);
@@ -56,7 +56,7 @@ export const ToggleDarkMode = ({
       document.body.classList.remove(ModeValue.dark);
       document.body.classList.add(ModeValue.light);
     }
-  }, [isDarkMode]);
+  }, [isDarkMode])};
 
   const handleToggle = () => {
     const _isDarkMode = !isDarkMode;
